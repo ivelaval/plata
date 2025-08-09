@@ -10,7 +10,10 @@
       "Bash(npm outdated)",
       "Bash(rm:*)",
       "Bash(npm update:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm lint:*)",
+      "WebFetch(domain:nextjs.org)"
     ],
     "deny": []
   }

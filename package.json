@@ -10,7 +10,10 @@
     "setup-supabase": "tsx scripts/setup-supabase.ts",
     "seed-supabase": "tsx -e \"import { seedSupabaseData } from './src/infrastructure/supabase/seed'; seedSupabaseData().then(() => console.log('✅ Seeding complete')).catch(console.error)\"",
     "setup-sqlite": "tsx -e \"import { setupSQLiteDatabase } from './src/infrastructure/sqlite/setup'; setupSQLiteDatabase().then(() => console.log('✅ SQLite setup complete')).catch(console.error)\"",
-    "seed-sqlite": "tsx -e \"import { seedSQLiteData } from './src/infrastructure/sqlite/seed'; seedSQLiteData().then(() => console.log('✅ SQLite seeding complete')).catch(console.error)\""
+    "seed-sqlite": "tsx -e \"import { seedSQLiteData } from './src/infrastructure/sqlite/seed'; seedSQLiteData().then(() => console.log('✅ SQLite seeding complete')).catch(console.error)\"",
+    "prisma:seed": "tsx prisma/seed.ts",
+    "prisma:sqlite": "cross-env DATABASE_PROVIDER=sqlite DATABASE_URL=file:./data/prisma.db npx prisma",
+    "prisma:postgres": "cross-env DATABASE_PROVIDER=postgresql npx prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.13.0",
@@ -30,6 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "tailwindcss": "^4",

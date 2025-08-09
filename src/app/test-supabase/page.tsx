@@ -1,4 +1,4 @@
-import { SupabaseUserRepository } from '@/infrastructure/repositories/SupabaseUserRepository';
+import { getUserRepository } from '@/infrastructure/repositories/RepositoryFactory';
 import { GetUserFinancialData } from '@/application/usecases/GetUserFinancialData';
 import { seedSupabaseData } from '@/infrastructure/supabase/seed';
 import { CashFlowData } from '@/domain/entities/User';
@@ -25,8 +25,8 @@ export default async function TestSupabasePage() {
       console.log('Seeding Supabase data...');
       await seedSupabaseData();
 
-    // Test the Supabase repository
-    const userRepository = new SupabaseUserRepository();
+    // Test the configured repository
+    const userRepository = await getUserRepository();
     const getUserFinancialData = new GetUserFinancialData(userRepository);
 
     // Test with user ID 1

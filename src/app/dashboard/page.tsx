@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import NoSSR from '@/presentation/components/NoSSR';
-import { GetUserFinancialData, FinancialSummary } from '@/application/usecases/GetUserFinancialData';
-import { MockUserRepository } from '@/infrastructure/repositories/MockUserRepository';
+import { FinancialSummary } from '@/application/usecases/GetUserFinancialData';
 
 // Dynamic imports to prevent SSR issues
 const FinancialCard = dynamic(() => import('@/presentation/components/dashboard/FinancialCard'), {
@@ -50,10 +49,14 @@ export default function DashboardPage() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const userRepository = new MockUserRepository();
-        const getUserFinancialData = new GetUserFinancialData(userRepository);
-        const data = await getUserFinancialData.execute(BigInt(1));
-        setFinancialData(data);
+        const response = await fetch('/api/financial-data?userId=1');
+        const result = await response.json();
+        
+        if (result.success) {
+          setFinancialData(result.data);
+        } else {
+          console.error('Error loading financial data:', result.error);
+        }
       } catch (error) {
         console.error('Error loading financial data:', error);
       } finally {

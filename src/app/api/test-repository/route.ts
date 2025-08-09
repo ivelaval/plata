@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { SupabaseUserRepository } from '@/infrastructure/repositories/SupabaseUserRepository';
+import { getUserRepository } from '@/infrastructure/repositories/RepositoryFactory';
 import { GetUserFinancialData } from '@/application/usecases/GetUserFinancialData';
 
 export async function POST(request: NextRequest) {
@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Test the Supabase repository
-    const userRepository = new SupabaseUserRepository();
+    // Test the configured repository
+    const userRepository = await getUserRepository();
     const getUserFinancialData = new GetUserFinancialData(userRepository);
 
     // Execute the use case

@@ -11,8 +11,19 @@ import {
   CashFlowData,
 } from "../../domain/entities/User";
 
+let prismaClient: PrismaClient | null = null;
+
+function getPrismaClient(): PrismaClient {
+  if (!prismaClient) {
+    prismaClient = new PrismaClient();
+  }
+  return prismaClient;
+}
+
 export class PrismaUserRepository implements UserRepository {
-  constructor(private prisma: PrismaClient) {}
+  private get prisma(): PrismaClient {
+    return getPrismaClient();
+  }
 
   async getUser(id: bigint): Promise<User | null> {
     const user = await this.prisma.user.findUnique({

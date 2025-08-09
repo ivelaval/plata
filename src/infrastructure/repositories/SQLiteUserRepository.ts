@@ -19,7 +19,13 @@ export class SQLiteUserRepository implements UserRepository {
   async getUser(id: bigint): Promise<User | null> {
     try {
       const stmt = this.db.prepare('SELECT * FROM users WHERE id = ?');
-      const user = stmt.get(Number(id)) as any;
+      const user = stmt.get(Number(id)) as { 
+        id: number; 
+        name: string; 
+        email: string; 
+        password_hash: string; 
+        created_at: string; 
+      } | undefined;
 
       if (!user) {
         return null;
@@ -41,7 +47,7 @@ export class SQLiteUserRepository implements UserRepository {
   async getUserAccounts(userId: bigint): Promise<Account[]> {
     try {
       const stmt = this.db.prepare('SELECT * FROM accounts WHERE user_id = ?');
-      const accounts = stmt.all(Number(userId)) as any[];
+      const accounts = stmt.all(Number(userId)) as { id: number; user_id: number; name: string; type: string; balance: number; created_at: string }[];
 
       return accounts.map((account) => ({
         id: BigInt(account.id),
@@ -65,7 +71,7 @@ export class SQLiteUserRepository implements UserRepository {
         WHERE a.user_id = ?
         ORDER BY t.date DESC
       `);
-      const transactions = stmt.all(Number(userId)) as any[];
+      const transactions = stmt.all(Number(userId)) as { id: number; account_id: number; amount: number; type: string; category: string; description: string; date: string; created_at: string }[];
 
       return transactions.map((transaction) => ({
         id: BigInt(transaction.id),
@@ -86,7 +92,7 @@ export class SQLiteUserRepository implements UserRepository {
   async getUserAssets(userId: bigint): Promise<Asset[]> {
     try {
       const stmt = this.db.prepare('SELECT * FROM assets WHERE user_id = ?');
-      const assets = stmt.all(Number(userId)) as any[];
+      const assets = stmt.all(Number(userId)) as { id: number; user_id: number; name: string; value: number; type: string; created_at: string }[];
 
       return assets.map((asset) => ({
         id: BigInt(asset.id),
@@ -105,7 +111,7 @@ export class SQLiteUserRepository implements UserRepository {
   async getUserLiabilities(userId: bigint): Promise<Liability[]> {
     try {
       const stmt = this.db.prepare('SELECT * FROM liabilities WHERE user_id = ?');
-      const liabilities = stmt.all(Number(userId)) as any[];
+      const liabilities = stmt.all(Number(userId)) as { id: number; user_id: number; name: string; amount: number; type: string; created_at: string }[];
 
       return liabilities.map((liability) => ({
         id: BigInt(liability.id),
@@ -124,7 +130,7 @@ export class SQLiteUserRepository implements UserRepository {
   async getUserBudgets(userId: bigint): Promise<Budget[]> {
     try {
       const stmt = this.db.prepare('SELECT * FROM budgets WHERE user_id = ?');
-      const budgets = stmt.all(Number(userId)) as any[];
+      const budgets = stmt.all(Number(userId)) as { id: number; user_id: number; category: string; amount: number; period: string; created_at: string }[];
 
       return budgets.map((budget) => ({
         id: BigInt(budget.id),
@@ -143,7 +149,7 @@ export class SQLiteUserRepository implements UserRepository {
   async getUserCycles(userId: bigint): Promise<Cycle[]> {
     try {
       const stmt = this.db.prepare('SELECT * FROM cycles WHERE user_id = ?');
-      const cycles = stmt.all(Number(userId)) as any[];
+      const cycles = stmt.all(Number(userId)) as { id: number; user_id: number; name: string; start_date: string; end_date: string; recurring: number; created_at: string }[];
 
       return cycles.map((cycle) => ({
         id: BigInt(cycle.id),
@@ -172,7 +178,7 @@ export class SQLiteUserRepository implements UserRepository {
         WHERE a.user_id = ? AND t.date >= ?
         ORDER BY t.date ASC
       `);
-      const transactions = stmt.all(Number(userId), sevenMonthsAgo.toISOString().split("T")[0]) as any[];
+      const transactions = stmt.all(Number(userId), sevenMonthsAgo.toISOString().split("T")[0]) as { id: number; account_id: number; amount: number; type: string; category: string; description: string; date: string; created_at: string }[];
 
       // Group transactions by month and calculate cash flow
       const monthlyData = new Map<string, { inflow: number; outflow: number }>();

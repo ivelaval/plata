@@ -36,8 +36,8 @@ export async function setupSQLiteDatabase(): Promise<void> {
     console.log('📊 Tables created: users, accounts, transactions, assets, liabilities, budgets, cycles');
     
     // Verify tables were created
-    const tables = db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all();
-    console.log('📋 Available tables:', tables.map((t: any) => t.name).join(', '));
+    const tables = db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all() as { name: string }[];
+    console.log('📋 Available tables:', tables.map((t) => t.name).join(', '));
     
   } catch (error) {
     console.error('❌ Error setting up SQLite database:', error);
