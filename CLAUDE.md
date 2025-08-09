@@ -24,6 +24,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Visit `/test-supabase` route to test Supabase integration (server-side, dynamic)
 - Visit `/test-supabase-client` route for client-side testing (avoids build-time execution)
 
+### Database (SQLite - Local Development)
+- `npm run setup-sqlite` - Setup SQLite database schema (creates data/plata.db)
+- `npm run seed-sqlite` - Seed SQLite database with sample data
+- Uses `better-sqlite3` for local development without external dependencies
+- Database file stored in `data/plata.db` (configurable via `SQLITE_DB_PATH` env var)
+
 ## Architecture
 
 This is a personal finance application ("Plata") built with **Clean Architecture** principles:
@@ -36,7 +42,7 @@ This is a personal finance application ("Plata") built with **Clean Architecture
 
 ### Key Patterns
 
-**Repository Pattern**: The `UserRepository` interface defines data access contracts, with implementations in infrastructure layer (`MockUserRepository`, `PrismaUserRepository`, `SupabaseUserRepository`).
+**Repository Pattern**: The `UserRepository` interface defines data access contracts, with implementations in infrastructure layer (`MockUserRepository`, `PrismaUserRepository`, `SupabaseUserRepository`, `SQLiteUserRepository`).
 
 **Use Case Pattern**: Business logic encapsulated in use cases (e.g., `GetUserFinancialData`).
 

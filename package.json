@@ -8,12 +8,15 @@
     "start": "next start",
     "lint": "next lint",
     "setup-supabase": "tsx scripts/setup-supabase.ts",
-    "seed-supabase": "tsx -e \"import { seedSupabaseData } from './src/infrastructure/supabase/seed'; seedSupabaseData().then(() => console.log('✅ Seeding complete')).catch(console.error)\""
+    "seed-supabase": "tsx -e \"import { seedSupabaseData } from './src/infrastructure/supabase/seed'; seedSupabaseData().then(() => console.log('✅ Seeding complete')).catch(console.error)\"",
+    "setup-sqlite": "tsx -e \"import { setupSQLiteDatabase } from './src/infrastructure/sqlite/setup'; setupSQLiteDatabase().then(() => console.log('✅ SQLite setup complete')).catch(console.error)\"",
+    "seed-sqlite": "tsx -e \"import { seedSQLiteData } from './src/infrastructure/sqlite/seed'; seedSQLiteData().then(() => console.log('✅ SQLite seeding complete')).catch(console.error)\""
   },
   "dependencies": {
     "@prisma/client": "^6.13.0",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.54.0",
+    "better-sqlite3": "^11.8.0",
     "lightweight-charts": "^5.0.8",
     "next": "15.4.6",
     "prisma": "^6.13.0",
@@ -23,6 +26,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/better-sqlite3": "^7.6.11",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
