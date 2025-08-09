@@ -7,8 +7,8 @@
  * It creates the database schema and seeds initial data.
  */
 
-import { supabaseAdmin } from '../src/infrastructure/supabase/client';
-import { seedSupabaseData } from '../src/infrastructure/supabase/seed';
+import { supabaseAdmin } from '@/infrastructure/supabase/client';
+import { seedSupabaseData } from '@/infrastructure/supabase/seed';
 
 async function setupSupabase() {
   console.log('🚀 Starting Supabase setup...');

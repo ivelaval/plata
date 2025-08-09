@@ -1,4 +1,4 @@
-import { UserRepository } from "../../domain/repositories/UserRepository";
+import { UserRepository } from "@/domain/repositories/UserRepository";
 import {
   User,
   Account,
@@ -8,8 +8,8 @@ import {
   Budget,
   Cycle,
   CashFlowData,
-} from "../../domain/entities/User";
-import { supabase } from "../supabase/client";
+} from "@/domain/entities/User";
+import { supabase } from "@/infrastructure/supabase/client";
 
 export class SupabaseUserRepository implements UserRepository {
   async getUser(id: bigint): Promise<User | null> {

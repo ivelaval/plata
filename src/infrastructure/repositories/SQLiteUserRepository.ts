@@ -1,4 +1,4 @@
-import { UserRepository } from "../../domain/repositories/UserRepository";
+import { UserRepository } from "@/domain/repositories/UserRepository";
 import {
   User,
   Account,
@@ -8,8 +8,8 @@ import {
   Budget,
   Cycle,
   CashFlowData,
-} from "../../domain/entities/User";
-import { getSQLiteClient } from "../sqlite/client";
+} from "@/domain/entities/User";
+import { getSQLiteClient } from "@/infrastructure/sqlite/client";
 
 export class SQLiteUserRepository implements UserRepository {
   private get db() {

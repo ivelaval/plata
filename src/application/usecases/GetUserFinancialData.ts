@@ -1,5 +1,5 @@
-import { UserRepository } from '../../domain/repositories/UserRepository';
-import { User, Account, Transaction, Asset, Liability, Budget, Cycle, CashFlowData } from '../../domain/entities/User';
+import { UserRepository } from '@/domain/repositories/UserRepository';
+import { User, Account, Transaction, Asset, Liability, Budget, Cycle, CashFlowData } from '@/domain/entities/User';
 
 export interface FinancialSummary {
   user: User | null;

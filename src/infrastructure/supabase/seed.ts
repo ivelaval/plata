@@ -1,4 +1,4 @@
-import { supabaseAdmin } from './client';
+import { supabaseAdmin } from '@/infrastructure/supabase/client';
 
 export async function seedSupabaseData() {
   if (!supabaseAdmin) {

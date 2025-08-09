@@ -1,4 +1,4 @@
-import { getSQLiteClient } from './client';
+import { getSQLiteClient } from '@/infrastructure/sqlite/client';
 
 export async function seedSQLiteData(): Promise<void> {
   console.log('🌱 Seeding SQLite database with sample data...');

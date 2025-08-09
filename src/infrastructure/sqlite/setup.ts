@@ -1,4 +1,4 @@
-import { getSQLiteClient } from './client';
+import { getSQLiteClient } from '@/infrastructure/sqlite/client';
 import fs from 'fs';
 import path from 'path';
 

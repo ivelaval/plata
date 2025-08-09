@@ -1,7 +1,7 @@
-import { UserRepository } from "../../domain/repositories/UserRepository";
-import { DatabaseConfig, getDatabaseConfig, isDatabaseConfigured } from "../config/database";
-import { MockUserRepository } from "./MockUserRepository";
-import { SupabaseUserRepository } from "./SupabaseUserRepository";
+import { UserRepository } from "@/domain/repositories/UserRepository";
+import { DatabaseConfig, getDatabaseConfig, isDatabaseConfigured } from "@/infrastructure/config/database";
+import { MockUserRepository } from "@/infrastructure/repositories/MockUserRepository";
+import { SupabaseUserRepository } from "@/infrastructure/repositories/SupabaseUserRepository";
 
 let cachedUserRepository: UserRepository | null = null;
 

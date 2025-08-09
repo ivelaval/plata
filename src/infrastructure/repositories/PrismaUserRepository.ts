@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { UserRepository } from "../../domain/repositories/UserRepository";
+import { UserRepository } from "@/domain/repositories/UserRepository";
 import {
   User,
   Account,
@@ -9,7 +9,7 @@ import {
   Budget,
   Cycle,
   CashFlowData,
-} from "../../domain/entities/User";
+} from "@/domain/entities/User";
 
 let prismaClient: PrismaClient | null = null;
 

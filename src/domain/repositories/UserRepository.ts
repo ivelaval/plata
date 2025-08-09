@@ -1,4 +1,4 @@
-import { User, Account, Transaction, Asset, Liability, Budget, Cycle, CashFlowData } from '../entities/User';
+import { User, Account, Transaction, Asset, Liability, Budget, Cycle, CashFlowData } from '@/domain/entities/User';
 
 export interface UserRepository {
   getUser(id: bigint): Promise<User | null>;

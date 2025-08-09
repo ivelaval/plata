@@ -1,4 +1,4 @@
-import { UserRepository } from "../../domain/repositories/UserRepository";
+import { UserRepository } from "@/domain/repositories/UserRepository";
 import {
   User,
   Account,
@@ -8,7 +8,7 @@ import {
   Budget,
   Cycle,
   CashFlowData,
-} from "../../domain/entities/User";
+} from "@/domain/entities/User";
 
 export class MockUserRepository implements UserRepository {
   async getUser(_id: bigint): Promise<User | null> {
